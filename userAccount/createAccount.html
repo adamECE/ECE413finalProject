@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/userLoginStyles.css" rel="stylesheet" type="text/css" />
+  <title>User Login</title>
+</head>
+
+<body>
+ 
+  <img  id="logo" src="../content/pulselogoclr.png" alt="pulse logo" height="70px" 
+  width="100px" > 
+  <h1>Sign Up</h1>
+
+  <form id="reg-form" class="create-account">
+    <p>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+    </p>
+    <p>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+    </p>
+    <p id="confirm">
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="confirm-password" name="confirm-password" id="confirm-password"><br>
+
+   
+      
+    </p>
+
+    <p>
+
+     <label for="Device Key">Device-Key</label>
+     <input type="text" name="Device" id="deviceKey">
+
+      
+    </p>
+    
+    <div class="submit-login-container">
+       <input class="submit-login" type="submit" value="Create Account">
+    </div>
+    <div class="login-link">
+       <a  id="loginbtn" href ="login.html" class="ex1">Login Page</a>
+    </div>
+</form>
+  <div id="formErrors"><ul id="errorList"></ul></div>
+   <script src="createAccount.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="userLoginStyles.css" rel="stylesheet" type="text/css" />
+  <title>User Login</title>
+</head>
+  
+<body>
+  <img id="logo" src="../content/pulselogoclr.png" alt="pulse logo" height="70px" width="100px" >
+  <div class="create-space"></div>
+  <h1>Log-In</h1>
+
+
+  <!--Change div to form later-->
+  <form id="login-form" class="create-account">
+  
+    <p>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+    </p>
+    <p>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+    </p>
+    <div class="submit-login-container">
+       <input class="submit-login" type="submit" value="Login">
+    </div>
+</form>
+  <!--<div class="create-acc-link">-->
+    <a id="create-acc" href ="createAccount.html" class="ex1">Create Account</a>
+  <!--</div>-->
+  <div id="formErrors"><ul id="errorList"></ul></div>
+  <div class="create-space"></div>
+</body> 
+  
+ <script src="login.js"></script>
+  
+</html>

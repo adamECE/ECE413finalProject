@@ -1,0 +1,233 @@
+html{
+
+}
+ 
+ body {
+  background-image:linear-gradient(#000000,#00ced1),url("../content/heart.gif");
+  background-blend-mode: screen;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center; 
+  margin: auto; 
+  margin-top: 30px;
+  width: 80%;
+  padding: 10px;
+   
+ 
+   
+ }
+ 
+ .create-space {
+  height: 300px;
+ }
+
+ h1{
+   margin: auto; 
+   padding: 10px;
+   text-align: center;
+   color: white; 
+ }
+ 
+ p, .submit-login-container, .create-acc-link, .login-link{
+ 
+   position: relative; 
+   margin-top: 20px;
+   margin: 5px; 
+   align-items: center;
+   text-align: center;
+   padding: 10px;
+ }
+ 
+ #confirm{
+ margin-right:58px;
+ 
+   
+ }
+ label, input {
+   margin: auto; 
+   align-items: center;
+   padding: 4px;
+ }
+ 
+ label {
+   color: white; 
+ }
+ 
+ input{
+    
+   max-width: 50%; 
+   border-radius: 4px;
+ }
+ .submit-login{
+   width: 20%;
+   min-width: 100px;
+   background-color: #00a329; 
+   border: solid white 1px; 
+   color: white; 
+   border-radius: 3px;
+ }
+ 
+ .confirm-password {
+   position: relative;
+   left: 50px;
+ }
+ 
+ a { 
+   border: solid white 1px;   
+   border-radius: 3px;
+   color: white;
+   min-width: 110px; 
+   padding: 3px;
+   position: relative; 
+   background-color: lightgray; 
+   padding-right: 5%;
+   padding-left: 5%;
+ }
+ 
+ a:link {
+   text-decoration: none;
+   color:#ffffff;       
+ }
+ 
+ a:visited { 
+   text-decoration: none;
+   color:white;  
+ }
+ 
+ #formErrors{
+     display:none;
+ }
+ 
+ .badInput {
+     border: 2px solid red; 
+ }
+ 
+ li{
+     color:red;
+ }
+ /*.create-account{
+ 
+ 
+ 
+   
+ }*/
+ #logo{
+ 
+   cursor:pointer;
+   
+ 
+ }
+ 
+ #loginbtn{
+ 
+  background-color: #00a329; 
+  max-width:30%; 
+   
+ }
+ #create-acc{
+   
+   background-color: #00a329;
+   max-width:30%; 
+ }
+ 
+ #loginbtn:hover{
+ 
+ background-color: lightgreen;
+ 
+   
+ }
+ .submit-login:hover{
+   background-color: lightgreen;
+ }
+ #create-acc:hover{
+   background-color: lightgreen;
+   
+ }
+ /*.gifback{
+ 
+ 
+   
+ }*/
+ 
+ 
+  /*mobile*/
+ 
+ @media (max-width:415px){
+ 
+   html{
+ 
+ 
+ 
+  background:linear-gradient(#000000,#00ced1),url("../content/heart.gif");
+ 
+   background-size:cover;
+   background-blend-mode:screen;
+ 
+   background-size:450px 800px;
+   background-repeat:no-repeat;
+   
+ 
+ 
+     
+ 
+   }
+ 
+ 
+ 
+ #confirm{
+ margin-right:35px;
+ font-size:11px;
+ font-style:bold;
+   
+ }
+ p, .submit-login-container, .create-acc-link, .login-link{
+ 
+   position: relative; 
+   margin-top: 20px;
+   margin-right: 20px; 
+   align-items: center;
+   text-align: center;
+   padding: 5px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+   
+ }
+ 
+ @media (max-width:760px){
+ 
+ 
+  html{
+ 
+ 
+ 
+  background:linear-gradient(#000000,#00ced1),url("../content/heart.gif");
+ 
+   background-size:cover;
+   background-blend-mode:screen;
+ 
+   background-size:600px 800px;
+   background-repeat:no-repeat;
+   
+ 
+ 
+     
+ 
+   }
+ 
+   
+ 
+ 
+ }
