@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const PORT = 5500; 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://ahoffmei:ece413@ece413cluster.fetwdvy.mongodb.net/ece413final?retryWrites=true&w=majority').then(() => console.log("connected to mongodb server")
+mongoose.connect('mongodb+srv://ahoffmei:fakePassword@ece413cluster.fetwdvy.mongodb.net/ece413final?retryWrites=true&w=majority').then(() => console.log("connected to mongodb server")
 ).catch((err) => console.log("error connecting to cluster: " + err)); 
 
 //const indexRouter = require('./routes/index');
