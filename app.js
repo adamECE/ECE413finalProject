@@ -8,19 +8,28 @@ const bodyParser = require('body-parser')
 const PORT = 5500; 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://ahoffmei:fakePassword@ece413cluster.fetwdvy.mongodb.net/ece413final?retryWrites=true&w=majority').then(() => console.log("connected to mongodb server")
+mongoose.connect('mongodb+srv://ahoffmei:ece413@ece413cluster.fetwdvy.mongodb.net/ece413final?retryWrites=true&w=majority').then(() => console.log("connected to mongodb server")
 ).catch((err) => console.log("error connecting to cluster: " + err)); 
 
 //const indexRouter = require('./routes/index');
 
 const user = require('./routes/users');
 const mainRouter = require('./routes/router');
+const { kStringMaxLength } = require('buffer');
 
 
 const UserSchema = new mongoose.Schema({
   username: String,
+  password: String,
+  deviceKey: String, 
+  
+})
+
+const accountSchema = new mongoose.Schema({
+  username: String,
   password: String
 })
+
 
 //const user = mongoose.model("User", UserSchema, "users");
 
@@ -74,6 +83,27 @@ app.post('/api/register', async (req, res) => {
       return res.json({status: 'error', error: 'Username already in use'});
     }
     throw err; 
+  }
+
+  res.json({ status:'ok' })
+})
+
+app.post('/api/testHeartRate', async (req, res) => {
+  console.log(req.body); 
+  const {deviceKey, heartRates} = req.body; 
+
+  try {
+    await user.findOneAndUpdate(
+      {  
+        deviceKey: deviceKey
+      },
+      {
+        $push: {
+          heartRates: heartRates
+        }
+      }) 
+  } catch (err) {
+      return res.json({status: 'error', error: err});
   }
 
   res.json({ status:'ok' })
