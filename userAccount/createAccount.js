@@ -8,6 +8,7 @@ async function registerUser(event) {
     event.preventDefault(); 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value;
     const deviceKey = document.getElementById('deviceKey').value;
 
     if (checkForm()){
@@ -19,21 +20,29 @@ async function registerUser(event) {
             body: JSON.stringify({
                 username,
                 password,
+                email, 
                 deviceKey
             })
         }).then((res) => {
             location.replace('login.html');
-        })
+        }) // add a .catch() later for safety. 
     }
 }
 
 const checkForm = () => {
-    let name = document.getElementById("fullName")
+    let username = document.getElementById("username")
+    let email = document.getElementById("email")
     let password = document.getElementById("password")
     let confirmPassword  = document.getElementById("confirm-password")
     let hasNoErrors = true 
   
-// check password length is between 10 to 20
+    if (4 >=String(username.value).length || String(username.value).length >=20){
+        showErrorMsg("Username must be between 4 and 20 characters.");
+        password.classList.add("badInput")
+        hasNoErrors = false
+    }
+
+    // check password length is between 10 to 20
     if(10 >=String(password.value).length || String(password.value).length >=20){
         showErrorMsg("Password must be between 10 and 20 characters.")
         password.classList.add("badInput")
