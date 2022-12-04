@@ -13,7 +13,13 @@ async function checkLogin(event) {
     const hr3 = document.getElementById('hr3').value;
     const hr4 = document.getElementById('hr4').value;
     const hr5 = document.getElementById('hr5').value;
-    const hrs = [hr1, hr2, hr3, hr4, hr5]; 
+    const heartRates = [hr1, hr2, hr3, hr4, hr5]; 
+    const dateTime = getParsedCurrentTime();
+
+    const heartRateInfo = {
+      dateTime,
+      heartRates
+    }
 
     const result = await fetch('/api/testHeartRate', {
       method: 'POST',
@@ -22,7 +28,7 @@ async function checkLogin(event) {
       },
       body: JSON.stringify({
           deviceID,
-          hrs
+          heartRateInfo
       })
   }).then((res) => {
     if (res.status==200){
@@ -36,9 +42,9 @@ async function checkLogin(event) {
 
 }
 
-const showErrorMsg = (msg) => {
-  errorMsg.style.display = 'block';
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(msg));
-  errorList.appendChild(li);
+const getParsedCurrentTime = () => {
+  let today = new Date()
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  return date+' '+time;
 }
