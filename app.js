@@ -93,15 +93,18 @@ app.post('/api/testHeartRate', async (req, res) => {
   const {deviceKey, heartRates} = req.body; 
 
   try {
-    await user.findOneAndUpdate(
-      {  
-        deviceKey: deviceKey
-      },
-      {
-        $push: {
-          heartRates: heartRates
-        }
-      }) 
+    const response = await user.findOne({deviceKey});
+    if (response != null){
+      await user.findOneAndUpdate(
+        {  
+          deviceKey: deviceKey
+        },
+        {
+          $push: {
+            heartRates: heartRates
+          }
+        }) 
+    }
   } catch (err) {
       return res.json({status: 'error', error: err});
   }
