@@ -71,7 +71,7 @@ app.post('/api/register/', async (req, res) => {
   
   const {username, password, deviceKey} = req.body; 
   const heartRates = []; 
-  const apiKey = "16b43zQHSiX0e0ZfT8q83Xxq6elsd5Zv";
+  const apiKey = process.env.MAIN_KEY;
   try {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -96,12 +96,12 @@ app.post('/api/register/', async (req, res) => {
   res.json({ status:'ok' })
 })
 
-app.post('/api/testHeartRates/', async (req, res) => {
-  console.log(req.body); 
-  
-  const {deviceKey, time, hr1} = req.body; 
-  if(apiKeys.includes(req.query.apiKey)){
-    console.log("if statement entered")
+app.post('/api/sendHeartRates/', async (req, res) => {
+  const {deviceKey, time, heartRate, satOxygen} = req.body; 
+  heartRate = String(heartRate); 
+  satOxygen = String(satOxygen); 
+
+  if (apiKeys.includes(req.query.apiKey)){
     try {
       const response = await user.findOne({deviceKey});
       const toUpdate = await user.findByIdAndUpdate(
@@ -109,7 +109,8 @@ app.post('/api/testHeartRates/', async (req, res) => {
         {
           "$push": {"heartRates": {
             time: time, 
-            data: hr1
+            heartRate: heartRate,
+            satOxygen: satOxygen
           }
         }
         }); 
@@ -119,6 +120,18 @@ app.post('/api/testHeartRates/', async (req, res) => {
     }
   }
   res.json({ status:'ok' })
+})
+
+app.get('/api/getUserHeartRateData', async (req, res) => { 
+  const username = req.query.username
+  const response = user.findOne({ username });
+
+  if(!response){
+    return res.json({status: 'error', error: err}); 
+  }
+  console.log(response);
+  console.log(response.heartRates);
+  return res.send(response.heartRates);
 })
 
 app.listen(PORT, () => {
