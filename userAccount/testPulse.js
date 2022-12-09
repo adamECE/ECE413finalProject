@@ -1,20 +1,24 @@
+/*
+!!!!!!!!!!!!!!!! REMEMBER TO ADD API KEY THIS ONE IS FAKE 
+*/
+
 const form = document.getElementById('login-form');
 let errorMsg = document.getElementById("formErrors");
 let errorList = document.getElementById("errorList");
-
 form.addEventListener('submit', checkLogin);
 
 async function checkLogin(event) {
     event.preventDefault(); 
-    const username = document.getElementById('username').value;
-    const deviceKey = document.getElementById('deviceID').value;
-    const hr1 = document.getElementById('hr1').value;
-    const hr2 = document.getElementById('hr2').value;
-    const heartRate = parseInt(String(hr1));
-    const satOxygen = parseInt(String(hr2));
-    const time = String(new Date()); 
+    let username = document.getElementById('username').value;
+    let deviceKey = document.getElementById('deviceID').value;
+    let hr1 = document.getElementById('hr1').value;
+    let hr2 = document.getElementById('hr2').value;
+    let hr3 = document.getElementById('hr3').value;
+    let heartRate = parseInt(String(hr1));
+    let satOxygen = parseInt(String(hr2));
+    let time = "Thu Dec "+hr3+" 2022 23:47:00 GMT-0700 (Mountain Standard Time)"; 
 
-    const result = await fetch('/api/sendHeartRate?apiKey=' + process.env.MAIN_KEY, {
+    const result = await fetch('/api/sendHeartRates?apiKey=fakeKey', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
