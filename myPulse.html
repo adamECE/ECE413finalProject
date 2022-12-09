@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body onload="getHR_Data()">
     <h1>Welcome to the heartRateDataPage</h1>
-    <form id="update-form" method="get">
-        <input type="submit" value="Start">  
-    </form>
+    <a href="testMyPulseAPI.html">Testing page</a>
+    <button id="refresh-btn" onclick="">Refresh</button>
+    <label for="filter-data">From:</label>
+    <input type="time" id="filter-start" name="filter-data" required>
+    <label for="filter-data2">To:</label>
+    <input type="time" id="filter-end" name="filter-data2" required>
+    <label for="filter-day">Select Day:</label>
+    <input type="date" id="filter-day" name="filter-day" required>
+    <button id="filter-btn" onclick="">Submit changes</button>
     <div id="dailyHR-data" style="width:50%; height:300px; margin:0 auto;"></div>
+    <p id="daily-data-displayed">Error: data for avg not loaded</p>
+    <p id="daily-maxmin">Error: data for max/min not loaded</p>
     <div id="weeklyHR-data" style="width:50%; height:300px; margin:0 auto;"></div>
+    <p id="weekly-data-displayed">Error: data for avg not loaded</p>
+    <p id="weekly-maxmin">Error: data for max/min not loaded</p>
 </body>
 <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 <script src="myPulse.js"></script>
