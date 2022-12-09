@@ -1,50 +1,79 @@
-const form = document.getElementById('login-form');
-let errorMsg = document.getElementById("formErrors");
-let errorList = document.getElementById("errorList");
+// _________________ FIGURE THIS STUFF OUT ______________
 
-form.addEventListener('submit', checkLogin);
+const sessionUser = localStorage.getItem("username"); 
+let heartRateData = null; 
+const form = document.getElementById('update-form');
+form.addEventListener('submit', getHR_Data);
 
-async function checkLogin(event) {
-    event.preventDefault(); 
-    const username = document.getElementById('username').value;
-    const deviceID = document.getElementById('deviceID').value;
-    const hr1 = document.getElementById('hr1').value;
-    const hr2 = document.getElementById('hr2').value;
-    const hr3 = document.getElementById('hr3').value;
-    const hr4 = document.getElementById('hr4').value;
-    const hr5 = document.getElementById('hr5').value;
-    const heartRates = [hr1, hr2, hr3, hr4, hr5]; 
-    const dateTime = getParsedCurrentTime();
-
-    const heartRateInfo = {
-      dateTime,
-      heartRates
+// Change to XHR GET request later
+async function getHR_Data(event) {
+  event.preventDefault(); 
+  const result = await fetch('/api/getUserHeartRateData?username=' + sessionUser, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
     }
-
-    const result = await fetch('/api/testHeartRate', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          deviceID,
-          heartRateInfo
-      })
-  }).then((res) => {
-    if (res.status==200){
-      console.log("i guess it was posted?"); 
+}).then((res) => {
+    if (res.status == 200) {
+      heartRateData = res.heartRates; 
+      console.log(res.heartRates);
     } else {
-      showErrorMsg("Something was incorrect.");
-      console.log(res.status + "," + res.error)
+      //TODO: add some css or something to show error getting data
     }
+}).catch((err) => {
+  console.log(err);
+})
+}
+
+//console.log(heartRateData);
+
+//console.log(String(new Date()))
+const unparsedStr = ['2022-12-07T17:52:22.046Z', '2022-12-07T17:51:06.765Z'];
+let myPointsWeekly = [];
+let myPointsDaily = [];
+// get the past 7 days 
+const past7Days = [...Array(7).keys()].map(index => {
+    const date = new Date();
+    date.setDate(date.getDate() - index);
+  
+    return date;
+  });
+  
+  let past7DaysObjects = []; 
+  past7Days.forEach((pastDay) => {
+        past7DaysObjects.push(parseHR_Date(pastDay))
+        //console.log(String(pastDay))
+  });
+
+  // daily view 
+  past7DaysObjects.forEach((pastDay) => {
+    // ideally check if current day here. 
+    myPointsDaily.push({x: pastDay.hour + (pastDay.min/100), y: pastDay.heartRate}); 
   })
-    
 
+
+// weekly view 
+
+// daily view 
+JSC.Chart('chartDiv', {
+    series: [
+       {
+          points: myPointsDaily
+       }
+    ]
+ });
+
+
+function parseHR_Date(tempDate) {
+    //console.log(tempDate.getDay());
+    dateTime = {
+        year: tempDate.getFullYear(),
+        month: tempDate.getMonth()+1,
+        day: tempDate.getDay()+1,
+        hour: tempDate.getHours(),
+        min: tempDate.getMinutes(),
+        heartRate: 1
+    } 
+    return dateTime; 
 }
 
-const getParsedCurrentTime = () => {
-  let today = new Date()
-  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  return date+' '+time;
-}
