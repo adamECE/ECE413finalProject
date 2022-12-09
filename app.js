@@ -29,6 +29,7 @@ const apiKeys = require('./routes/apiKey');
 const mainRouter = require('./routes/router');
 const { kStringMaxLength } = require('buffer');
 const { time } = require('console');
+const { stringify } = require('querystring');
 
 const app = express();
 app.use(cookieParser()); 
@@ -97,13 +98,13 @@ app.post('/api/register/', async (req, res) => {
 })
 
 app.post('/api/sendHeartRates/', async (req, res) => {
-  const {deviceKey, time, heartRate, satOxygen} = req.body; 
-  heartRate = String(heartRate); 
-  satOxygen = String(satOxygen); 
-
+  const {deviceKey, time, heartRate, satOxygen, username} = req.body;
+  console.log(typeof(deviceKey))
   if (apiKeys.includes(req.query.apiKey)){
     try {
       const response = await user.findOne({deviceKey});
+      
+      console.log(response); 
       const toUpdate = await user.findByIdAndUpdate(
         response._id, 
         {
@@ -124,14 +125,17 @@ app.post('/api/sendHeartRates/', async (req, res) => {
 
 app.get('/api/getUserHeartRateData', async (req, res) => { 
   const username = req.query.username
-  const response = user.findOne({ username });
-
-  if(!response){
-    return res.json({status: 'error', error: err}); 
-  }
-  console.log(response);
-  console.log(response.heartRates);
-  return res.send(response.heartRates);
+  let hrObj = null; 
+  const response = user.findOne({ username }, function(err, userObj) {
+    if(err) {
+      return res.json({status: 'Error', error: err}); 
+    } else if (userObj) {
+      hrObj = userObj; 
+      return res.send(hrObj);
+    } else {
+      console.log("User Error: " + err); 
+    }
+  });
 })
 
 app.listen(PORT, () => {
