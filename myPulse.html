@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body onload="getHR_Data()">
+<body>
     <h1>Welcome to the heartRateDataPage</h1>
     <a href="testMyPulseAPI.html">Testing page</a>
-    <button id="refresh-btn" onclick="">Refresh</button>
+
+
+
     <label for="filter-data">From:</label>
     <input type="time" id="filter-start" name="filter-data" required>
     <label for="filter-data2">To:</label>
     <input type="time" id="filter-end" name="filter-data2" required>
     <label for="filter-day">Select Day:</label>
     <input type="date" id="filter-day" name="filter-day" required>
-    <button id="filter-btn" onclick="">Submit changes</button>
+    <form id="username-form" class="create-account">
+        <p>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+        </p>
+        <input class="submit-username" type="submit" value="Get Heart Rate Data">
+    </form>
     <div id="dailyHR-data" style="width:50%; height:300px; margin:0 auto;"></div>
     <p id="daily-data-displayed">Error: data for avg not loaded</p>
     <p id="daily-maxmin">Error: data for max/min not loaded</p>
