@@ -1,10 +1,8 @@
 // _________________ FIGURE THIS STUFF OUT ______________
 
-const sessionUser = localStorage.getItem("username"); 
 let heartRateData = null; 
-const form = document.getElementById('update-form');
-const filterBtn = document.getElementById('filter-btn');
-const refreshBTn = document.getElementById('refresh-btn');
+
+//const filterBtn = document.getElementById('filter-btn');
 const startTimeFilter = document.getElementById('filter-start');
 const endTimeFilter = document.getElementById('filter-end');
 const dayFilter = document.getElementById('filter-day'); 
@@ -12,11 +10,15 @@ const dailyDataPara = document.getElementById('daily-data-displayed')
 const weeklyDataPara = document.getElementById('weekly-data-displayed')
 const dailyMaxMin = document.getElementById('daily-maxmin')
 const weeklyMaxMin = document.getElementById('weekly-maxmin')
-filterBtn.addEventListener('click', getHR_DataWithConstraints);
+//filterBtn.addEventListener('click', getHR_DataWithConstraints);
+const usernameForm = document.getElementById('username-form');
+usernameForm.addEventListener('submit', getHR_Data);
 
 
 // Change to XHR GET request later
-async function getHR_Data() {
+async function getHR_Data(event) {
+  event.preventDefault(); 
+  const sessionUser = document.getElementById('username').value; 
   const result = await fetch('/api/getUserHeartRateData?username=' + sessionUser, {
     method: 'GET',
     headers: {
@@ -31,8 +33,9 @@ async function getHR_Data() {
 }
 
 // Change to XHR GET request later
-async function getHR_DataWithConstraints() {
-  if((startTimeFilter.value).length > 0 || (endTimeFilter.value).length > 0 || (dayFilter.value).length>0){
+async function getHR_DataWithConstraints(event) {
+    event.preventDefault(); 
+    const sessionUser = document.getElementById('username').value; 
     const result = await fetch('/api/getUserHeartRateData?username=' + sessionUser, {
       method: 'GET',
       headers: {
@@ -44,7 +47,7 @@ async function getHR_DataWithConstraints() {
   ).catch((err) => {
     console.log(err);
   })
-  }
+  
   // else maybe add something here. 
 }
 
