@@ -1,11 +1,14 @@
-* {box-sizing:border-box}
+body {
+  background:linear-gradient(#505002,#1ce9e9);
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+}
 
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin:auto;
-  
 }
 
 /* Hide the images by default */
@@ -60,7 +63,7 @@
   top: 0;
 }
 
-/* The dots/bullets/indicators */
+/* Dots/bullets/indicators on slideshow*/
 .dot {
   cursor: pointer;
   height: 15px;
@@ -72,6 +75,7 @@
   transition: background-color 0.6s ease;
 }
 
+/* Hover on slideshow dots */
 .active, .dot:hover {
   background-color: #717171;
 }
@@ -87,151 +91,45 @@
   to {opacity: 1}
 }
 
-html{
-
-  background:linear-gradient(#505002,#1ce9e9);
-      background-repeat: no-repeat;
-    background-attachment: fixed;
-  
+#navBar {
+  right:30px; 
+  background-color: #505002;
 }
-#navBar{
-margin-bottom:30px;
 
-
-  
-}
 #navBar a{
-
-background-color:#35aa03;
-border-radius: 20px;
-padding: 20px;
-
-  
+  background-color:#35aa03;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px; 
+  float: right;
 }
 #navBar a:hover{
-background-color:#50e510;
-
-  
+  background-color:#50e510;
 }
 
-a:link {text-decoration: none;
-color:#ffffff;       
+a:link {
+  text-decoration: none;
+  color:#ffffff;       
        }
 
-a:visited { text-decoration: none;
-  color:white;        }
-
+a:visited { 
+  text-decoration: none;
+  color:white;        
+}
 
 
 h2{
-color:white;
-  
+  color:white;
 }
+
 #signup{
-
-cursor:pointer;
-
-  
-}
-#move_toabt{
-
   cursor:pointer;
-  
-
-  
 }
+
+#move_toabt{
+  cursor:pointer;
+}
+
 #aboutSection{
-position: relative;
-
-  
-}
-
-#home{
-  margin-left:10%
-  
-}
-
-#login{
-
- margin-left:60%
-  
-}
-
-
-
-
-
-
-
-@media (max-width:415px){
-
-
-
-video{
-
-
-  width:100%;
-  
-  
-}
-
-#navBar a{
-
-background-color:#35aa03;
-border-radius: 10px;
-padding: 10px;
-
-  
-}
-#home{
-
-margin-right:5px;
-
-  
-}
-
-  #login{
-
- margin-left:20px;
-}
-
-
-
-
-
-
-
-}
-
-@media (max-width:760px){
-
-#home{
-
-margin-right:5px;
-
-  
-}
-
-  #login{
-
- margin-left:35px;
-}
-
-
-
-
-video{
-
-
-  width:100%;
-  
-  
-}
-
-
-
-
-
-
-
+  position: relative;  
 }
